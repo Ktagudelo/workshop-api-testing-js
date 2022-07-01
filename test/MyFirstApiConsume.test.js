@@ -12,7 +12,6 @@ describe("First Api Tests", () => {
         expect(response.data).to.have.property("origin");
     });
 
-
     it("Consume GET Service with query parameters", async () => {
         const query = {
             name: "John",
@@ -26,7 +25,6 @@ describe("First Api Tests", () => {
         expect(response.config.query).to.eql(query);
     });
 
-
     it("Consume HEAD Service", async () => {
         const response = await axios.head("https://httpbin.org/headers");
 
@@ -34,49 +32,45 @@ describe("First Api Tests", () => {
         expect(response.headers).to.have.property("server");
     });
 
-
     it("Consume PUT Service with query parameters", async () => {
-        const queryPut = {
+        const payload = {
             id: 1,
             name: "Maria",
             age: "31",
             city: "Medellin",
         };
 
-        const response = await axios.put("https://httpbin.org/put?id=1", { queryPut });
+        const response = await axios.put("https://httpbin.org/put?id=1", payload);
 
         expect(response.status).to.equal(StatusCodes.OK);
-        expect(response.data.json.queryPut).to.have.property("name");
-        expect(response.data.json.queryPut).to.have.property("age");
-        expect(response.data.json.queryPut).to.have.property("city");
-        expect(response.data.json.queryPut.id).equal(1);
+        expect(response.data.json).to.have.property("name");
+        expect(response.data.json).to.have.property("age");
+        expect(response.data.json).to.have.property("city");
+        expect(response.data.json.id).equal(1);
     });
 
-
     it("Consume PATCH Service with query parameters", async () => {
-        const queryPatch = {
+        const payload = {
             id: 2,
             city: "Londres"
         };
 
-        const response = await axios.patch("https://httpbin.org/patch?id=2", { queryPatch });
+        const response = await axios.patch("https://httpbin.org/patch?id=2", payload);
 
         expect(response.status).to.equal(StatusCodes.OK);
-        expect(response.data.json.queryPatch).to.have.property("city");
-        expect(response.data.json.queryPatch.id).equal(2);
+        expect(response.data.json).to.have.property("city");
+        expect(response.data.json.id).equal(2);
     });
 
-
     it("Consume DELETE Service an existing data", async () => {
-        const response = await axios.delete("https://httpbin.org/delete?id=3");
+        const payload = {
+            id: 3
+        };
+
+        const response = await axios.delete("https://httpbin.org/delete", payload);
 
         expect(response.status).to.equal(StatusCodes.OK);
-        expect(response.data.args.id).equal('3');
+
     });
 
 });
-
-
-
-
-
