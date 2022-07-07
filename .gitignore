@@ -196,4 +196,7 @@ $RECYCLE.BIN/
 ## Reports ##
 report
 
+# environment variable
+.env
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node
