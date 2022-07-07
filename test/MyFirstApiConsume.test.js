@@ -68,7 +68,6 @@ describe('First Api Tests', () => {
     };
 
     const response = await axios.delete('https://httpbin.org/delete', payload);
-
     expect(response.status).to.equal(StatusCodes.OK);
   });
 });
