@@ -12,11 +12,7 @@ describe('Github Api Test', () => {
     it('Via OAuth2 Tokens by Header', async () => {
       const response = await axios.get(
         `${urlBase}/repos/${githubUserName}/${repository}`,
-        {
-          headers: {
-            Authorization: `token ${process.env.ACCESS_TOKEN}`
-          }
-        }
+        { access_token: process.env.ACCESS_TOKEN }
       );
 
       expect(response.status).to.equal(StatusCodes.OK);
